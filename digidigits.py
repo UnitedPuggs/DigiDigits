@@ -5,11 +5,11 @@ allcards = requests.get("https://digimoncard.io/api-public/getAllCards.php?sort=
 alldicts = allcards.json()
 url = "https://digimoncard.io/api/tcgplayerprices.php"
 
+data = []
 for i in range(0, len(alldicts) - 1):
-    querystring = {"cardnumber": alldicts[i]["cardnumber"]}
-    response = requests.request("GET", url, params=querystring)
-
-data = response.json()
+    querystring = alldicts[i]["cardnumber"]
+    response = requests.get(f"https://digimoncard.io/api/tcgplayerprices.php?cardnumber={querystring}")
+    data += response.json()
 
 price = data[0]["market_price"]
 card = alldicts[0]["cardnumber"]
