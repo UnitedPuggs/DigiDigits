@@ -8,9 +8,11 @@ alldict = allcards.json()
 
 data = []
 lenBetweenSets = []
+session = requests.Session()
+
 for i in range(0, len(alldict) - 1):
     querystring = alldict[i]["cardnumber"]
-    response = requests.get(f"https://digimoncard.io/api/tcgplayerprices.php?cardnumber={querystring}")
+    response = session.get(f"https://digimoncard.io/api/tcgplayerprices.php?cardnumber={querystring}")
     data += response.json()
     if "error" in data:
         data.remove("error")
