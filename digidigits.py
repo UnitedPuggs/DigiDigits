@@ -10,7 +10,10 @@ alldict = allcards.json()
 
 #data is info on every card queried from alldicts
 data = []
+lenBetweenSets = []
 #holds the length of every request since lengths are uneven
+session = requests.Session()
+
 for i in range(len(alldict)):
     querystring = alldict[i]["cardnumber"]
     response = session.get(f"https://digimoncard.io/api/tcgplayerprices.php?cardnumber={querystring}")
