@@ -46,9 +46,9 @@ async def main():
 
 asyncio.run(main())
 #Creates an empty dataframe
-nameFrame = pd.DataFrame()
-numFrame = pd.DataFrame()
-priceFrame = pd.DataFrame()
+name_frame = pd.DataFrame()
+num_frame = pd.DataFrame()
+price_frame = pd.DataFrame()
 pack_frame = pd.DataFrame()
 
 #For amount of cards in each set of data with attached names and card numbers
@@ -59,9 +59,9 @@ for i in range(len(card_amt)):
 
 
 #Creates the columns
-nameFrame['Card Names'] = card_name
-numFrame['Card Numbers'] = card_num
-priceFrame['Market Price'] = price_list
+name_frame['Card Names'] = card_name
+num_frame['Card Numbers'] = card_num
+price_frame['Market Price'] = price_list
 pack_frame['Pack'] = card_pack
     
 #Opens Google Sheet
@@ -70,9 +70,9 @@ sh = gc.open('DigiDigits')
 wks = sh[0]
 
 #Sets data frame to cell starting at 1, 1 to 1, 3
-wks.set_dataframe(nameFrame,(1,1))
-wks.set_dataframe(numFrame,(1,2))
-wks.set_dataframe(priceFrame,(1,3))
+wks.set_dataframe(name_frame,(1,1))
+wks.set_dataframe(num_frame,(1,2))
+wks.set_dataframe(price_frame,(1,3))
 wks.set_dataframe(pack_frame, (1, 4))
 
 end = time.time() - start
