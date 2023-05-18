@@ -45,35 +45,21 @@ async def main():
                 card_amt.append(0)
 
 asyncio.run(main())
-#Creates an empty dataframe
-name_frame = pd.DataFrame()
-num_frame = pd.DataFrame()
-price_frame = pd.DataFrame()
-pack_frame = pd.DataFrame()
-
 #For amount of cards in each set of data with attached names and card numbers
 for i in range(len(card_amt)):
     for j in range(0, card_amt[i]):
         card_name.append(allcards[i]['name'])
         card_num.append(allcards[i]['cardnumber'])
-
-
-#Creates the columns
-name_frame['Card Names'] = card_name
-num_frame['Card Numbers'] = card_num
-price_frame['Market Price'] = price_list
-pack_frame['Pack'] = card_pack
-    
+#Creates our DataFrame and populates it with values from our lists
+digi_frame = pd.DataFrame({'Card Names': card_name, 'Card Numbers': card_num, 'Market Price': price_list, 'Pack': card_pack})
+print(digi_frame['Market Price'])
 #Opens Google Sheet
 sh = gc.open('DigiDigits')
 #Uses the first sheet
 wks = sh[0]
 
 #Sets data frame to cell starting at 1, 1 to 1, 3
-wks.set_dataframe(name_frame,(1,1))
-wks.set_dataframe(num_frame,(1,2))
-wks.set_dataframe(price_frame,(1,3))
-wks.set_dataframe(pack_frame, (1, 4))
+wks.set_dataframe(digi_frame, (1,1))
 
 end = time.time() - start
 print(f'{end} seconds')
