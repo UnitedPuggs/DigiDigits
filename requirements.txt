@@ -1,0 +1,3 @@
+requests
+pandas
+aiohttp==3.9.0b0

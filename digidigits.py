@@ -1,6 +1,5 @@
 import requests
 import pandas as pd
-import pygsheets
 from datetime import date
 import aiohttp
 import asyncio
