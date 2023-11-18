@@ -48,7 +48,7 @@ func get_card_info(db *sql.DB) http.HandlerFunc {
 		vars := mux.Vars(r)
 		card_num := vars["card_num"]
 
-		rows, err := db.Query("select * from digimon_card_data where card_num = ? group by card_num, rarity, pack", card_num)
+		rows, err := db.Query("select * from digimon_card_data where card_num like '%' || ? || '%' group by card_num, rarity, pack", card_num)
 		if err != nil {
 			log.Fatal(err)
 		}
